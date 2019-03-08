@@ -6,7 +6,7 @@ import java.util.Date;
  *
  * @author davi
  */
-public abstract class Veiculo {
+public class Veiculo {
     
 protected Long id;
     
@@ -22,7 +22,7 @@ protected String tipo;
 
 protected String porte;
 
-protected byte imagem;
+protected Byte imagem;
 
     public Long getId() {
         return id;
@@ -80,11 +80,11 @@ protected byte imagem;
         this.porte = porte;
     }
 
-    public byte getImagem() {
+    public Byte getImagem() {
         return imagem;
     }
 
-    public void setImagem(byte imagem) {
+    public void setImagem(Byte imagem) {
         this.imagem = imagem;
     }
 

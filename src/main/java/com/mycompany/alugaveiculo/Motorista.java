@@ -1,86 +1,41 @@
 package com.mycompany.alugaveiculo;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
-public class Motorista {
+@Entity
+@Table(name = "TB_Motorista")
+@PrimaryKeyJoinColumn(name="ID", referencedColumnName = "ID")
+public class Motorista extends Pessoa implements Serializable {
     
-private Long id;
-
-private String nome;
-
-private String sobrenome;
-
-private String cpf;
-
-private String reputacao;
-
-private String login;
-
-private String senha;
-
-private String email;
-
-    public Long getId() {
-        return id;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TXT_REPUTACAO", length = 20, nullable = false)
+    private Reputacao reputacao;
+    
+    @Column(name = "TXT_CPF", length = 11 , nullable = false)
+    private String cpf;
+    
+    
+    public Reputacao getReputacao() {
+        return reputacao;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setReputacao(Reputacao reputacao) {
+        this.reputacao = reputacao;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
+    
+    
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public String getReputacao() {
-        return reputacao;
-    }
-
-    public void setReputacao(String reputacao) {
-        this.reputacao = reputacao;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
 }

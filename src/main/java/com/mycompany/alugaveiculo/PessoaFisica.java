@@ -1,47 +1,24 @@
 
 package com.mycompany.alugaveiculo;
 
-public class PessoaFisica {
-  
-private Long id;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
-private String nome;
 
-private String sobrenome;
+@Entity
+@Table(name = "TB_PessoaF")
+@PrimaryKeyJoinColumn(name="ID", referencedColumnName = "ID")
+public class PessoaFisica extends Pessoa implements Serializable {
 
+@Column(name = "TXT_CPF", length = 11 , nullable = false)
 private String cpf;
 
+@Column(name = "TXT_CREDITOS",nullable = true)
 private Integer creditos;
 
-private String login;
-
-private String senha;
-
-private String email;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
 
     public String getCpf() {
         return cpf;
@@ -59,29 +36,6 @@ private String email;
         this.creditos = creditos;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
 
  
