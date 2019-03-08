@@ -18,7 +18,7 @@ import javax.persistence.Table;
  * @author davi
  */
 @Entity
- @Table(name = "TB_ALUGUEL")
+@Table(name = "TB_ALUGUEL")
 public class Aluguel implements Serializable{
     
 @Id
@@ -26,13 +26,13 @@ public class Aluguel implements Serializable{
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 
-@Column(name = "DT_INICIO",length = 8, nullable = false)
+@Column(name = "DT_INICIO",length = 20, nullable = false)
 private String datainicio;
 
-@Column(name = "DT_FINAL",length = 8, nullable = false)
+@Column(name = "DT_FINAL",length = 20, nullable = false)
 private String datafinal;
 
-@Column(name="TXT_PRECO",length = 10, nullable = false)
+@Column(name="TXT_PRECO",length = 20, nullable = false)
 private String preco;
 
     public Long getId() {

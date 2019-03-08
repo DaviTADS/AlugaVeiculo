@@ -1,28 +1,49 @@
 package com.mycompany.alugaveiculo;
 
-import java.util.Date;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author davi
  */
-public class Veiculo {
+@Entity
+@Table(name = "TB_VEICULO")
+public class Veiculo implements Serializable {
+
+    @Id
+    @Column(name = "ID_Veiculo")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    protected Long id;
+
     
-protected Long id;
+    @Column(name = "DT_ANOF", nullable = true)
+    protected String anofabricacao;
     
-protected Date ano;
-
-protected String modelo;
-
-protected String fabricante;
-
-protected String capacidade;
-
-protected String tipo;
-
-protected String porte;
-
-protected Byte imagem;
+    @Column(name="TXT_MODELO",length = 40 , nullable = false)
+    protected String modelo;
+    
+    @Column(name="TXT_FABRICANTE",length = 20 , nullable = false)
+    protected String fabricante;
+    
+    @Column(name="TXT_CAPACIDADE",length = 2 , nullable = false)
+    protected String capacidade;
+    
+    @Column(name="TXT_TIPO",length = 20 , nullable = false)
+    protected String tipo;
+    
+    @Column(name="TXT_PORTE",length = 40 , nullable = false)
+    protected String porte;
+    
+    @Column(name = "TXT_DESC", length = 100 , nullable = false)
+    protected String descricao;
+    
+    protected Byte imagem;
 
     public Long getId() {
         return id;
@@ -32,12 +53,12 @@ protected Byte imagem;
         this.id = id;
     }
 
-    public Date getAno() {
-        return ano;
+    public String getAno() {
+        return anofabricacao;
     }
 
-    public void setAno(Date ano) {
-        this.ano = ano;
+    public void setAno(String anofabricacao) {
+        this.anofabricacao = anofabricacao;
     }
 
     public String getModelo() {
@@ -88,6 +109,4 @@ protected Byte imagem;
         this.imagem = imagem;
     }
 
-
-                
 }
