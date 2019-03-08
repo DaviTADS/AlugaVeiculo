@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    
+    <!-- Pessoa id = 1 (pessoa fisica) -->  
+    <TB_PESSOA DISC_PESSOA = "PF" TXT_NOME="Fulano" TXT_SOBRENOME="Sicrano" TXT_LOGIN="qualquer" TXT_SENHA="senha"
+     TXT_EMAIL="email@gmail.com"/>
+    <TB_PESSOAF ID_PESSOA="1" TXT_CPF="15648956978" TXT_CREDITOS="500" />
+    
+    <!-- Pessoa id = 2 (pessoa juridica) -->  
+    <TB_PESSOA DISC_PESSOA = "PJ" TXT_NOME="Sicrano" TXT_SOBRENOME="Silva" TXT_LOGIN="whatever" TXT_SENHA="senha"
+     TXT_EMAIL="email@gmail.com"/>
+    <TB_PESSOAJ ID_PESSOA="2" TXT_CPF="15648956978" TXT_CREDITOS="500" />
+    
+    <!-- Pessoa id = 3 (motorista) -->  
+    <TB_PESSOA DISC_PESSOA = "M" TXT_NOME="Beltrano" TXT_SOBRENOME="Moura" TXT_LOGIN="bel" TXT_SENHA="senha"
+     TXT_EMAIL="email@gmail.com"/>
+    <TB_MOTORISTA ID_PESSOA="3" TXT_CPF="15648956978" TXT_REPUTACAO="Boa" />
+    
+    <TB_ALUGUEL DT_INICIO="27/04/2019" DT_FINAL="27/05/2019" TXT_PRECO="R$2000" />
+    
+        
+        
+      
+</dataset>

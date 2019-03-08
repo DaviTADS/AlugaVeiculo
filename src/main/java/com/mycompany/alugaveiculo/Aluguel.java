@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 /**
@@ -28,10 +26,10 @@ public class Aluguel implements Serializable{
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 
-@Column(name = "TXT_DATAINICIO",length = 8, nullable = false)
+@Column(name = "DT_INICIO",length = 8, nullable = false)
 private String datainicio;
 
-@Column(name = "TXT_DATAFINAL",length = 8, nullable = false)
+@Column(name = "DT_FINAL",length = 8, nullable = false)
 private String datafinal;
 
 @Column(name="TXT_PRECO",length = 10, nullable = false)

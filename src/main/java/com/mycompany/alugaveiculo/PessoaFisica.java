@@ -3,14 +3,16 @@ package com.mycompany.alugaveiculo;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "TB_PessoaF")
-@PrimaryKeyJoinColumn(name="ID", referencedColumnName = "ID")
+@Table(name = "TB_PESSOAF")
+@DiscriminatorValue(value="PF")
+@PrimaryKeyJoinColumn(name="ID_PESSOA", referencedColumnName = "ID_PESSOA")
 public class PessoaFisica extends Pessoa implements Serializable {
 
 @Column(name = "TXT_CPF", length = 11 , nullable = false)

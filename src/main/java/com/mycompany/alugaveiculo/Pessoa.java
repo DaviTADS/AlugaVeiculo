@@ -7,6 +7,8 @@ package com.mycompany.alugaveiculo;
 
 import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,12 +22,14 @@ import javax.persistence.Table;
  * @author davi
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED) 
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "DISC_PESSOA",
+discriminatorType = DiscriminatorType.STRING, length = 1)
 @Table(name = "TB_PESSOA")
 public abstract class Pessoa implements Serializable {
    
 @Id
-@Column(name = "ID")
+@Column(name = "ID_PESSOA")
 @GeneratedValue(strategy = GenerationType.IDENTITY)    
 private Long id;
 
