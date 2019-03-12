@@ -33,12 +33,6 @@ public abstract class Pessoa implements Serializable {
 @GeneratedValue(strategy = GenerationType.IDENTITY)    
 private Long id;
 
-@Column(name = "TXT_NOME", length = 20, nullable = false)
-private String nome;
-
-@Column(name = "TXT_SOBRENOME", length = 60, nullable = false)
-private String sobrenome;
-
 @Column(name = "TXT_LOGIN", length = 12, nullable = false)
 private String login;
 
@@ -55,23 +49,6 @@ private String email;
     public void setId(Long id) {
         this.id = id;
     }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
 
     public String getLogin() {
         return login;

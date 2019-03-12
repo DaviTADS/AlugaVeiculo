@@ -6,12 +6,15 @@
 package com.mycompany.alugaveiculo;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -26,11 +29,13 @@ public class Aluguel implements Serializable{
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 
-@Column(name = "DT_INICIO",length = 20, nullable = false)
-private String datainicio;
+@Temporal(TemporalType.DATE)
+@Column(name = "DT_INICIO", nullable = false)
+private Date datainicio;
 
-@Column(name = "DT_FINAL",length = 20, nullable = false)
-private String datafinal;
+@Temporal(TemporalType.DATE)
+@Column(name = "DT_FINAL", nullable = false)
+private Date datafinal;
 
 @Column(name="TXT_PRECO",length = 20, nullable = false)
 private String preco;
@@ -43,19 +48,19 @@ private String preco;
         this.id = id;
     }
 
-    public String getDatainicio() {
+    public Date getDatainicio() {
         return datainicio;
     }
 
-    public void setDatainicio(String datainicio) {
+    public void setDatainicio(Date datainicio) {
         this.datainicio = datainicio;
     }
 
-    public String getDatafinal() {
+    public Date getDatafinal() {
         return datafinal;
     }
 
-    public void setDatafinal(String datafinal) {
+    public void setDatafinal(Date datafinal) {
         this.datafinal = datafinal;
     }
 
