@@ -8,15 +8,27 @@
     <!--     Pessoa id = 1 (pessoa fisica) -->
     <TB_Pessoa DISC_PESSOA = "F" TXT_NOME="Celso" TXT_SENHA="senha2" TXT_EMAIL="email2@gmail.com"/>
     <TB_PessoaFisica ID_PESSOA="2" TXT_SOBRENOME="Siclano" TXT_CPF="15648956978" TXT_CREDITOS="502" />
+    
+    <!--     Pessoa id = 1 (pessoa fisica) -->
+    <TB_Pessoa DISC_PESSOA = "F" TXT_NOME="Ulisses" TXT_SENHA="senha2" TXT_EMAIL="email3@gmail.com"/>
+    <TB_PessoaFisica ID_PESSOA="3" TXT_SOBRENOME="Barros" TXT_CPF="15648956978" TXT_CREDITOS="502" />
+   
+    <!--     Pessoa id = 1 (pessoa fisica) -->
+    <TB_Pessoa DISC_PESSOA = "F" TXT_NOME="Patrick" TXT_SENHA="senha2" TXT_EMAIL="email4@gmail.com"/>
+    <TB_PessoaFisica ID_PESSOA="4" TXT_SOBRENOME="Serrano" TXT_CPF="15648956978" TXT_CREDITOS="502" />
    
     
 <!--     Pessoa id = 2 (pessoa juridica) -->
     <TB_PESSOA DISC_PESSOA = "J" TXT_NOME="OralB" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
-    <TB_PessoaJuridica ID_PESSOA="3" TXT_RAZAOSOCIAL="OralB do Brasil Ltda" TXT_CNPJ="25984516256984" TXT_CREDITOS="500" />
+    <TB_PessoaJuridica ID_PESSOA="5" TXT_RAZAOSOCIAL="OralB do Brasil Ltda" TXT_CNPJ="25984516256984" TXT_CREDITOS="700" />
+    
+    <!--     Pessoa id = 2 (pessoa juridica) -->
+    <TB_PESSOA DISC_PESSOA = "J" TXT_NOME="Guarana Antartica" TXT_SENHA="senha1" TXT_EMAIL="ambev@gmail.com"/>
+    <TB_PessoaJuridica ID_PESSOA="6" TXT_RAZAOSOCIAL="A AMBEV S.A." TXT_CNPJ="91088328000167 " TXT_CREDITOS="300" />
     
 <!--     Pessoa id = 3 (motorista) -->
     <TB_PESSOA DISC_PESSOA = "M" TXT_NOME="Beltrano" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
-    <TB_Motorista ID_PESSOA="4" TXT_SOBRENOME="Moura" TXT_CPF="15648956978" TXT_REPUTACAO="Boa" />
+    <TB_Motorista ID_PESSOA="7" TXT_SOBRENOME="Moura" TXT_CPF="15648956978" TXT_REPUTACAO="Boa" />
     
     <TB_Aluguel DT_INICIO="2019-04-27" DT_FINAL="2019-05-27" TXT_PRECO="R$2000" />
     

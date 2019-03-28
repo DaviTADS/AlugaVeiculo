@@ -32,7 +32,7 @@ public class PessoaJuridica extends Pessoa implements Serializable {
     private String cnpj;
 
     @Column(name = "TXT_CREDITOS",nullable = true)
-    private Integer creditos;
+    private String creditos;
 
 
     public String getRazaosocial() {
@@ -51,11 +51,11 @@ public class PessoaJuridica extends Pessoa implements Serializable {
         this.cnpj = cnpj;
     }
 
-    public Integer getCreditos() {
+    public String getCreditos() {
         return creditos;
     }
 
-    public void setCreditos(Integer creditos) {
+    public void setCreditos(String creditos) {
         this.creditos = creditos;
     }
 

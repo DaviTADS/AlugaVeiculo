@@ -34,7 +34,7 @@ public class PessoaFisica extends Pessoa implements Serializable {
     private String cpf;
 
     @Column(name = "TXT_CREDITOS", nullable = true)
-    private Integer creditos;
+    private String creditos;
     
     
     public String getCpf() {
@@ -45,11 +45,11 @@ public class PessoaFisica extends Pessoa implements Serializable {
         this.cpf = cpf;
     }
 
-    public Integer getCreditos() {
+    public String getCreditos() {
         return creditos;
     }
 
-    public void setCreditos(Integer creditos) {
+    public void setCreditos(String creditos) {
         this.creditos = creditos;
     }
 
