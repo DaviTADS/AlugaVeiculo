@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    
+<!--     Pessoa id = 1 (pessoa fisica) -->
+    <TB_Pessoa DISC_PESSOA = "F" TXT_NOME="Fulano" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
+    <TB_PessoaFisica ID_PESSOA="1" TXT_SOBRENOME="Sicrano" TXT_CPF="15648956978" TXT_CREDITOS="500" />
+     
+    <!--     Pessoa id = 1 (pessoa fisica) -->
+    <TB_Pessoa DISC_PESSOA = "F" TXT_NOME="Celso" TXT_SENHA="senha2" TXT_EMAIL="email2@gmail.com"/>
+    <TB_PessoaFisica ID_PESSOA="2" TXT_SOBRENOME="Siclano" TXT_CPF="15648956978" TXT_CREDITOS="502" />
+   
+    
+<!--     Pessoa id = 2 (pessoa juridica) -->
+    <TB_PESSOA DISC_PESSOA = "J" TXT_NOME="OralB" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
+    <TB_PessoaJuridica ID_PESSOA="3" TXT_RAZAOSOCIAL="OralB do Brasil Ltda" TXT_CNPJ="25984516256984" TXT_CREDITOS="500" />
+    
+<!--     Pessoa id = 3 (motorista) -->
+    <TB_PESSOA DISC_PESSOA = "M" TXT_NOME="Beltrano" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
+    <TB_Motorista ID_PESSOA="4" TXT_SOBRENOME="Moura" TXT_CPF="15648956978" TXT_REPUTACAO="Boa" />
+    
+    <TB_Aluguel DT_INICIO="2019-04-27" DT_FINAL="2019-05-27" TXT_PRECO="R$2000" />
+    
+    <TB_Veiculo DT_ANOF="2010" TXT_MODELO="Fiat Uno" TXT_FABRICANTE="Fiat" NUM_CAPACIDADE="5" 
+                 TXT_TIPO="compacto" TXT_PORTE="medio" TXT_DESC="Um carro util para fazer atividades diarias pela cidade." />   
+        
+      
+      
+<!--        <TB_Veiculo DT_ANOF="2010" TXT_MODELO="Fiat Uno" TXT_FABRICANTE="Fiat" NUM_CAPACIDADE="5" 
+                 TXT_TIPO="compacto" TXT_PORTE="medio" TXT_DESC="Um carro util para fazer atividades diarias pela cidade." />  -->
+</dataset>
