@@ -2,15 +2,17 @@ package com.mycompany.alugaveiculo;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -34,6 +36,9 @@ public class Veiculo implements Serializable {
     @Column(name = "TXT_PLACA", table = "TB_Placa", nullable = false)
     private Collection<String> placas;
     
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
+    @JoinColumn(name = "ID_Motorista", referencedColumnName = "ID_Pessoa")
+    private Motorista motorista;
     
     @Column(name = "DT_ANOF", nullable = true)
     protected String anofabricacao;
