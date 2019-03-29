@@ -130,6 +130,37 @@ public class TestePessoa extends GenericTest {
         logger.info("id do aluguel inserido = "+aluguel.getId());
         
     }
+    
+    @Test
+    public void atualizarAluguel(){
+         logger.info("Executando atualizarAluguel()");
+         Aluguel aluguel = em.find(Aluguel.class,1L);
+         aluguel.setPreco("R$2500");
+         em.flush();
+         Aluguel aluguelalterado = em.find(Aluguel.class,1L);
+         assertEquals("R$2500",aluguel.getPreco());
+    }
+    
+    @Test
+    public void atualizarAluguelMerge(){
+         logger.info("Executando atualizarMergeAluguel()");
+         Aluguel aluguel = em.find(Aluguel.class,3L);
+         aluguel.setPreco("R$3000");
+         em.clear();
+         em.merge(aluguel);
+         Aluguel aluguelalterado = em.find(Aluguel.class,3L);
+         assertEquals("R$3000",aluguel.getPreco());
+    }
+    
+    @Test
+    public void deletarAluguel(){
+        logger.info("Executando atualizarMergeAluguel()");
+        Aluguel aluguel = em.find(Aluguel.class, 2L);
+        em.remove(aluguel);
+        Aluguel aluguelexcluido = em.find(Aluguel.class, 2L);
+        assertNull(aluguelexcluido);
+        
+    }
         
     
     private PessoaFisica criarPessoaFisica(){
