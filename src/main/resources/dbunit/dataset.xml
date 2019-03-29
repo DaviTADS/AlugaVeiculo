@@ -30,7 +30,7 @@
     <TB_PESSOA DISC_PESSOA = "M" TXT_NOME="Beltrano" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
     <TB_Motorista ID_PESSOA="7" TXT_SOBRENOME="Moura" TXT_CPF="15648956978" TXT_REPUTACAO="Boa" />
     
-    <TB_Aluguel DT_INICIO="2019-04-27" DT_FINAL="2019-05-27" TXT_PRECO="R$2000" />
+    <TB_Aluguel DT_INICIO="2019-04-27" DT_FINAL="2019-05-27" TXT_PRECO="R$2000" ID_PESSOA="2" />
     
     <TB_Veiculo DT_ANOF="2010" TXT_MODELO="Fiat Uno" TXT_FABRICANTE="Fiat" NUM_CAPACIDADE="5" 
                  TXT_TIPO="compacto" TXT_PORTE="medio" TXT_DESC="Um carro util para fazer atividades diarias pela cidade." />   

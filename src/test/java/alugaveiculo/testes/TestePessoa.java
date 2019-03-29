@@ -1,10 +1,15 @@
 
 package alugaveiculo.testes;
 
+import static alugaveiculo.testes.GenericTest.logger;
+import com.mycompany.alugaveiculo.Aluguel;
 import com.mycompany.alugaveiculo.PessoaFisica;
 import com.mycompany.alugaveiculo.PessoaJuridica;
+import com.mycompany.alugaveiculo.Veiculo;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -77,11 +82,11 @@ public class TestePessoa extends GenericTest {
     @Test
     public void atualizarPessoaJuridicaMerge(){
         logger.info("Executando atualizarPessoaJuridicaMerge()");
-        PessoaJuridica pessoaJuridica = em.find(PessoaJuridica.class,9L);
+        PessoaJuridica pessoaJuridica = em.find(PessoaJuridica.class,10L);
         pessoaJuridica.setRazaosocial("Coca Cola Industrias Brasileiras Ltda");
         em.clear();
         em.merge(pessoaJuridica);
-        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class, 9L);
+        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class, 10L);
         assertEquals("Coca Cola Industrias Brasileiras Ltda", pessoaJBuscada.getRazaosocial());
     
     }
@@ -102,6 +107,27 @@ public class TestePessoa extends GenericTest {
         em.remove(pessoaJuridica);
         PessoaJuridica pessoajbuscada = em.find(PessoaJuridica.class, 6L);
         assertNull(pessoajbuscada);
+        
+    }
+    
+    @Test
+    public void persistVeiculo() {
+        logger.info("Executando persistVeiculo()");
+        Veiculo veiculo = criarVeiculo2();
+        em.persist(veiculo);
+        em.flush();
+        assertNotNull(veiculo.getId());
+        
+    }
+    
+    @Test
+    public void persistirAluguel(){
+        logger.info("Executando persistirAluguel()");
+        Aluguel aluguel = criarAluguel();
+        em.persist(aluguel);
+        em.flush();
+        assertNotNull(aluguel.getId());
+        logger.info("id do aluguel inserido = "+aluguel.getId());
         
     }
         
@@ -142,5 +168,82 @@ public class TestePessoa extends GenericTest {
         
         return pessoaj;
     }
+    
+    public Veiculo criarVeiculo2(){
+        Veiculo veiculo = new Veiculo();
+        veiculo.setAnofabricacao("2000");
+        veiculo.setCapacidade(6);
+        veiculo.setFabricante("Honda");
+        veiculo.setImagem(Byte.MIN_VALUE);
+        veiculo.setModelo("F156");
+        veiculo.setPorte("Grande");
+        veiculo.setTipo("Esportivo");
+        veiculo.setDescricao("Descrição...");
+        List<String> placas = new ArrayList();
+        placas.add("AXM52");
+        placas.add("V5C0D3");
+        veiculo.setPlacas(placas);
+        
+        
+        return veiculo;
+    }    
+    
+    private Aluguel criarAluguel(){
+        Aluguel aluguel = new Aluguel();
+        Calendar ci = Calendar.getInstance();
+        ci.set(Calendar.YEAR, 2019);
+        ci.set(Calendar.MONTH, Calendar.APRIL);
+        ci.set(Calendar.DAY_OF_MONTH, 01);
+        aluguel.setDatainicio(ci.getTime());
+        Calendar cf = Calendar.getInstance();
+        cf.set(Calendar.YEAR, 2019);
+        cf.set(Calendar.MONTH, Calendar.APRIL);
+        cf.set(Calendar.DAY_OF_MONTH, 02);
+        aluguel.setDatafinal(cf.getTime());
+        aluguel.setPreco("R$1500");
+        PessoaFisica pessoa = criarPessoaFisica02();
+        aluguel.setPessoa(pessoa);
+        List<Veiculo> veiculos = new ArrayList();
+        Veiculo veiculo01 = criarVeiculo();
+        veiculos.add(veiculo01);
+        aluguel.setVeiculos(veiculos);
+        
+        
+        return aluguel;
+    }
+    
+    
+    private PessoaFisica criarPessoaFisica02() {
+        PessoaFisica pessoa01 = new PessoaFisica();
+        String telefone = "985447213";
+        Collection<String> telefones = new ArrayList();
+        telefones.add(telefone);
+        pessoa01.setNome("Anselmo");
+        pessoa01.setSobrenome("Noronha");
+        pessoa01.setSenha("456");
+        pessoa01.setTelefones(telefones);
+        pessoa01.setEmail("whatever@gmail.com");
+        pessoa01.setCpf("15648923578");
+        pessoa01.setCreditos("200");
 
+        return pessoa01;
+    }
+
+    private Veiculo criarVeiculo() {
+        Veiculo veiculo = new Veiculo();
+        veiculo.setAnofabricacao("2015");
+        veiculo.setCapacidade(5);
+        veiculo.setFabricante("Cintroen");
+        veiculo.setImagem(Byte.MIN_VALUE);
+        veiculo.setModelo("C4 PALLAS");
+        veiculo.setDescricao("Carro Sedan aconchegante ideal para atender a eventos de gala.");
+        veiculo.setPorte("Medio");
+        veiculo.setTipo("Sedan");
+        List<String> placas = new ArrayList();
+        placas.add("OPK5477");
+        placas.add("OPL2369");
+        veiculo.setPlacas(placas);
+
+        return veiculo;
+    }
 }

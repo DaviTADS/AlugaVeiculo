@@ -30,18 +30,18 @@ import javax.persistence.TemporalType;
 @Table(name = "TB_Aluguel")
 public class Aluguel implements Serializable{
   
-@ManyToOne(fetch = FetchType.LAZY, optional = false)
+@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL , optional = false)
 @JoinColumn(name = "ID_Pessoa", referencedColumnName = "ID_Pessoa")
 private Pessoa pessoa;
 
-@ManyToMany(fetch = FetchType.LAZY)
+@ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 @JoinTable(name = "TB_Aluguel_Veiculo", joinColumns = { 
     @JoinColumn(name = "ID_Aluguel")},
         inverseJoinColumns = {
             @JoinColumn(name = "ID_Veiculo")})
 private List<Veiculo> veiculos;
 
-    
+
 @Id
 @Column(name = "ID_Aluguel")
 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,6 +57,22 @@ private Date datafinal;
 
 @Column(name="TXT_PRECO",length = 20, nullable = false)
 private String preco;
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public List<Veiculo> getVeiculos() {
+        return veiculos;
+    }
+
+    public void setVeiculos(List<Veiculo> veiculos) {
+        this.veiculos = veiculos;
+    }
 
     public Long getId() {
         return id;

@@ -20,10 +20,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author marcos
- */
+
 public class GenericTest {
 
     protected static EntityManagerFactory emf;
@@ -35,7 +32,6 @@ public class GenericTest {
     public static void setUpClass() {
         logger = Logger.getGlobal();
         logger.setLevel(Level.INFO);
-        //logger.setLevel(Level.SEVERE);
         emf = Persistence.createEntityManagerFactory("alugaveiculo");
         DbUnitUtil.inserirDados();
     }
