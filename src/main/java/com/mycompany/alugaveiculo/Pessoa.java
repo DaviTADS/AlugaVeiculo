@@ -39,7 +39,7 @@ public abstract class Pessoa implements Serializable {
 
     @ElementCollection
     @CollectionTable(name = "TB_Telefone",
-            joinColumns = @JoinColumn(name = "ID_USUARIO"))
+            joinColumns = @JoinColumn(name = "ID_Pessoa"))
     //@Basic(fetch = FetchType.LAZY)
     @Column(name = "TXT_TELEFONE", table = "TB_Telefone", nullable = false)
     protected Collection<String> telefones;

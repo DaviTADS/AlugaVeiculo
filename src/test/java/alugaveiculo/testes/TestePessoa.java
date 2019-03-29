@@ -1,10 +1,12 @@
 
 package alugaveiculo.testes;
 
+import com.mycompany.alugaveiculo.Motorista;
 import static alugaveiculo.testes.GenericTest.logger;
 import com.mycompany.alugaveiculo.Aluguel;
 import com.mycompany.alugaveiculo.PessoaFisica;
 import com.mycompany.alugaveiculo.PessoaJuridica;
+import com.mycompany.alugaveiculo.Reputacao;
 import com.mycompany.alugaveiculo.Veiculo;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,6 +42,16 @@ public class TestePessoa extends GenericTest {
         em.flush();
         assertNotNull(empresa.getId());
         logger.info("id da pessoa juridica inserida = "+empresa.getId());
+    }
+    
+    @Test
+    public void persistirMotorista() {
+        logger.info("Executando persistirMotorista()");
+        Motorista motorista = criarMotorista();
+        em.persist(motorista);
+        em.flush();
+        assertNotNull(motorista.getId());
+        logger.info("id do motorista inserido = "+motorista.getId());
     }
     
     @Test
@@ -82,13 +94,25 @@ public class TestePessoa extends GenericTest {
     @Test
     public void atualizarPessoaJuridicaMerge(){
         logger.info("Executando atualizarPessoaJuridicaMerge()");
-        PessoaJuridica pessoaJuridica = em.find(PessoaJuridica.class,10L);
+        PessoaJuridica pessoaJuridica = em.find(PessoaJuridica.class,11L);
         pessoaJuridica.setRazaosocial("Coca Cola Industrias Brasileiras Ltda");
         em.clear();
         em.merge(pessoaJuridica);
-        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class, 10L);
+        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class, 11L);
         assertEquals("Coca Cola Industrias Brasileiras Ltda", pessoaJBuscada.getRazaosocial());
     
+    }
+    
+    @Test
+    public void atualizarMotorista(){
+        logger.info("Executando atualizarMotorista()");
+        Motorista motorista = em.find(Motorista.class,8L);
+        motorista.setReputacao(Reputacao.Ruim);
+        motorista.setSenha("555");
+        em.flush();
+        Motorista motoristaBuscado = em.find(Motorista.class,8L);
+        assertEquals("555", motoristaBuscado.getSenha());
+        assertEquals(Reputacao.Ruim,motorista.getReputacao());
     }
     
     @Test
@@ -198,6 +222,32 @@ public class TestePessoa extends GenericTest {
         
         
         return pessoaj;
+    }
+    
+    private Motorista criarMotorista(){
+        Motorista motorista = new Motorista();
+        String telefone1 = "999666886";
+        String telefone2 = "977773214";
+        Collection<String> telefones = new ArrayList();
+        telefones.add(telefone1);
+        telefones.add(telefone2);
+        motorista.setNome("Pilotinho");
+        motorista.setSobrenome("Lotovisk");
+        motorista.setSenha("123");
+        motorista.setTelefones(telefones);
+        motorista.setCpf("63940255009");
+        motorista.setEmail("pilotinho@gmail.com");
+        String habilitacaoMoto = "Moto";
+        String habilitacaoCarro = "Carro";
+        List<String> habilitacoes = new ArrayList();
+        habilitacoes.add(habilitacaoMoto);
+        habilitacoes.add(habilitacaoCarro);
+        motorista.setHabilitacoes(habilitacoes);
+        motorista.setReputacao(Reputacao.Excelente);
+        
+        
+
+        return motorista;
     }
     
     public Veiculo criarVeiculo2(){
