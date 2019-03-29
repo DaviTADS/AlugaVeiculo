@@ -1,10 +1,13 @@
 
 package alugaveiculo.testes;
 
+import com.mycompany.alugaveiculo.Motorista;
 import com.mycompany.alugaveiculo.PessoaFisica;
 import com.mycompany.alugaveiculo.PessoaJuridica;
+import com.mycompany.alugaveiculo.Reputacao;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -35,6 +38,16 @@ public class TestePessoa extends GenericTest {
         em.flush();
         assertNotNull(empresa.getId());
         logger.info("id da pessoa juridica inserida = "+empresa.getId());
+    }
+    
+    @Test
+    public void persistirMotorista() {
+        logger.info("Executando persistirMotorista()");
+        Motorista motorista = criarMotorista();
+        em.persist(motorista);
+        em.flush();
+        assertNotNull(motorista.getId());
+        logger.info("id do motorista inserido = "+motorista.getId());
     }
     
     @Test
@@ -85,6 +98,17 @@ public class TestePessoa extends GenericTest {
         assertEquals("Coca Cola Industrias Brasileiras Ltda", pessoaJBuscada.getRazaosocial());
     
     }
+    
+//    @Test
+//    public void atualizarMotorista(){
+//        logger.info("Executando atualizarMotorista()");
+//        Motorista motorista = em.find(Motorista.class,10L);
+//        motorista.setReputacao(Reputacao.Ruim);
+//        motorista.setSenha("555");
+//        em.flush();
+//        Motorista motoristaBuscado = em.find(Motorista.class,10L);
+//        assertEquals("555", motoristaBuscado.getSenha());     
+//    }
     
     @Test
     public void deletarPessoaFisica(){
@@ -141,6 +165,32 @@ public class TestePessoa extends GenericTest {
         
         
         return pessoaj;
+    }
+    
+    private Motorista criarMotorista(){
+        Motorista motorista = new Motorista();
+        String telefone1 = "999666886";
+        String telefone2 = "977773214";
+        Collection<String> telefones = new ArrayList();
+        telefones.add(telefone1);
+        telefones.add(telefone2);
+        motorista.setNome("Pilotinho");
+        motorista.setSobrenome("Lotovisk");
+        motorista.setSenha("123");
+        motorista.setTelefones(telefones);
+        motorista.setCpf("63940255009");
+        motorista.setEmail("pilotinho@gmail.com");
+        String habilitacaoMoto = "Moto";
+        String habilitacaoCarro = "Carro";
+        List<String> habilitacoes = new ArrayList();
+        habilitacoes.add(habilitacaoMoto);
+        habilitacoes.add(habilitacaoCarro);
+        motorista.setHabilitacoes(habilitacoes);
+        motorista.setReputacao(Reputacao.Excelente);
+        
+        
+
+        return motorista;
     }
 
 }

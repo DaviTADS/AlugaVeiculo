@@ -3,12 +3,15 @@ package com.mycompany.alugaveiculo;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
@@ -18,21 +21,19 @@ import javax.persistence.Table;
  * @author davi, davydadriel
  */
 @Entity
-@SecondaryTable(name = "TB_Habilitacoes",
-        pkJoinColumns = {
-        @PrimaryKeyJoinColumn(name = "ID_Pessoa")}
-)
 @Table(name = "TB_Motorista")
 @DiscriminatorValue(value="M")
 @PrimaryKeyJoinColumn(name="ID_Pessoa", referencedColumnName = "ID_Pessoa")
 public class Motorista extends Pessoa implements Serializable {
     
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "TXT_HABILITACOES", table = "TB_Habilitacoes", nullable = false)
+    
+    @ElementCollection
+    @CollectionTable(name = "TB_Habilitacoes",
+            joinColumns = @JoinColumn(name = "ID_Pessoa"))
+    //@Basic(fetch = FetchType.LAZY)
+    @Column(name = "TXT_Habilitacao", table = "TB_Habilitacoes", nullable = false)
     private List<String> habilitacoes;
     
-    @Column(name = "TXT_NOME", length = 20, nullable = false)
-    private String nome;
 
     @Column(name = "TXT_SOBRENOME", length = 60, nullable = false)
     private String sobrenome;
@@ -52,13 +53,6 @@ public class Motorista extends Pessoa implements Serializable {
         this.habilitacoes = habilitacoes;
     }
     
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public String getSobrenome() {
         return sobrenome;

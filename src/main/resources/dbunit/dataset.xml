@@ -19,16 +19,22 @@
    
     
 <!--     Pessoa id = 2 (pessoa juridica) -->
-    <TB_PESSOA DISC_PESSOA = "J" TXT_NOME="OralB" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
+    <TB_Pessoa DISC_PESSOA = "J" TXT_NOME="OralB" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
     <TB_PessoaJuridica ID_PESSOA="5" TXT_RAZAOSOCIAL="OralB do Brasil Ltda" TXT_CNPJ="25984516256984" TXT_CREDITOS="700" />
     
     <!--     Pessoa id = 2 (pessoa juridica) -->
-    <TB_PESSOA DISC_PESSOA = "J" TXT_NOME="Guarana Antartica" TXT_SENHA="senha1" TXT_EMAIL="ambev@gmail.com"/>
+    <TB_Pessoa DISC_PESSOA = "J" TXT_NOME="Guarana Antartica" TXT_SENHA="senha1" TXT_EMAIL="ambev@gmail.com"/>
     <TB_PessoaJuridica ID_PESSOA="6" TXT_RAZAOSOCIAL="A AMBEV S.A." TXT_CNPJ="91088328000167 " TXT_CREDITOS="300" />
     
-<!--     Pessoa id = 3 (motorista) -->
-    <TB_PESSOA DISC_PESSOA = "M" TXT_NOME="Beltrano" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
+    <!--     Pessoa id = 3 (motorista) -->
+    <TB_Pessoa DISC_PESSOA = "M" TXT_NOME="Beltrano" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
     <TB_Motorista ID_PESSOA="7" TXT_SOBRENOME="Moura" TXT_CPF="15648956978" TXT_REPUTACAO="Boa" />
+    
+    <!--Pessoa id = 8 (motorista)
+    <TB_Pessoa DISC_PESSOA = "M" TXT_NOME="Alejo" TXT_SENHA="senha" TXT_EMAIL="alejoga@gmail.com"/>
+    <TB_Motorista ID_PESSOA="10" TXT_SOBRENOME="Jogador" TXT_CPF="63940255009" TXT_REPUTACAO="Excelente" /> -->
+    
+    
     
     <TB_Aluguel DT_INICIO="2019-04-27" DT_FINAL="2019-05-27" TXT_PRECO="R$2000" />
     
