@@ -5,28 +5,28 @@
     <TB_Pessoa DISC_PESSOA = "F" TXT_NOME="Fulano" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
     <TB_PessoaFisica ID_PESSOA="1" TXT_SOBRENOME="Sicrano" TXT_CPF="15648956978" TXT_CREDITOS="500" />
      
-    <!--     Pessoa id = 1 (pessoa fisica) -->
+    <!--     Pessoa id = 2 (pessoa fisica) -->
     <TB_Pessoa DISC_PESSOA = "F" TXT_NOME="Celso" TXT_SENHA="senha2" TXT_EMAIL="email2@gmail.com"/>
     <TB_PessoaFisica ID_PESSOA="2" TXT_SOBRENOME="Siclano" TXT_CPF="15648956978" TXT_CREDITOS="502" />
     
-    <!--     Pessoa id = 1 (pessoa fisica) -->
+    <!--     Pessoa id = 3 (pessoa fisica) -->
     <TB_Pessoa DISC_PESSOA = "F" TXT_NOME="Ulisses" TXT_SENHA="senha2" TXT_EMAIL="email3@gmail.com"/>
     <TB_PessoaFisica ID_PESSOA="3" TXT_SOBRENOME="Barros" TXT_CPF="15648956978" TXT_CREDITOS="502" />
    
-    <!--     Pessoa id = 1 (pessoa fisica) -->
+    <!--     Pessoa id = 4 (pessoa fisica) -->
     <TB_Pessoa DISC_PESSOA = "F" TXT_NOME="Patrick" TXT_SENHA="senha2" TXT_EMAIL="email4@gmail.com"/>
     <TB_PessoaFisica ID_PESSOA="4" TXT_SOBRENOME="Serrano" TXT_CPF="15648956978" TXT_CREDITOS="502" />
    
     
-<!--     Pessoa id = 2 (pessoa juridica) -->
+<!--     Pessoa id = 5 (pessoa juridica) -->
     <TB_Pessoa DISC_PESSOA = "J" TXT_NOME="OralB" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
     <TB_PessoaJuridica ID_PESSOA="5" TXT_RAZAOSOCIAL="OralB do Brasil Ltda" TXT_CNPJ="25984516256984" TXT_CREDITOS="700" />
     
-    <!--     Pessoa id = 3 (pessoa juridica) -->
+    <!--     Pessoa id = 6 (pessoa juridica) -->
     <TB_Pessoa DISC_PESSOA = "J" TXT_NOME="Guarana Antartica" TXT_SENHA="senha1" TXT_EMAIL="ambev@gmail.com"/>
     <TB_PessoaJuridica ID_PESSOA="6" TXT_RAZAOSOCIAL="A AMBEV S.A." TXT_CNPJ="91088328000167 " TXT_CREDITOS="300" />
     
-    <!--     Pessoa id = 4 (motorista) -->
+    <!--     Pessoa id = 7 (motorista) -->
     <TB_Pessoa DISC_PESSOA = "M" TXT_NOME="Beltrano" TXT_SENHA="senha" TXT_EMAIL="email@gmail.com"/>
     <TB_Motorista ID_PESSOA="7" TXT_SOBRENOME="Moura" TXT_CPF="15648956978" TXT_REPUTACAO="Boa" />
     
@@ -35,26 +35,24 @@
     
     <TB_Aluguel DT_INICIO="2019-02-15" DT_FINAL="2019-03-15" TXT_PRECO="R$2600" ID_PESSOA="3" />
     
-    <TB_Aluguel DT_INICIO="2019-01-03" DT_FINAL="2019-01-17" TXT_PRECO="R$2000" ID_PESSOA="1" />
+    <TB_Aluguel DT_INICIO="2019-01-03" DT_FINAL="2019-01-17" TXT_PRECO="R$3000" ID_PESSOA="1" />
 
 <!--    Pessoa id = 8 (motorista)-->
     <TB_Pessoa DISC_PESSOA = "M" TXT_NOME="Alejo" TXT_SENHA="senha" TXT_EMAIL="alejoga@gmail.com"/>
     <TB_Motorista ID_PESSOA="8" TXT_SOBRENOME="Jogador" TXT_CPF="63940255009" TXT_REPUTACAO="Excelente" /> 
     
+    <TB_Pessoa DISC_PESSOA = "M" TXT_NOME="Reinaldo" TXT_SENHA="klgya" TXT_EMAIL="reinaldo@gmail.com"/>
+    <TB_Motorista ID_PESSOA="9" TXT_SOBRENOME="Campeao" TXT_CPF="63930255009" TXT_REPUTACAO="Boa" /> 
     
-    
-    <TB_Aluguel DT_INICIO="2019-04-27" DT_FINAL="2019-05-27" TXT_PRECO="R$2000" />
-    
-    <TB_Aluguel DT_INICIO="2019-02-15" DT_FINAL="2019-03-15" TXT_PRECO="R$2500" />
-    
-    <TB_Aluguel DT_INICIO="2019-01-03" DT_FINAL="2019-01-17" TXT_PRECO="R$3000" />
-
     
     <TB_Veiculo DT_ANOF="2010" TXT_MODELO="Fiat Uno" TXT_FABRICANTE="Fiat" NUM_CAPACIDADE="5" 
                  TXT_TIPO="compacto" TXT_PORTE="medio" TXT_DESC="Um carro util para fazer atividades diarias pela cidade." />   
         
+    <TB_Veiculo DT_ANOF="2070" TXT_MODELO="Fiat Linux" TXT_FABRICANTE="Fiat" NUM_CAPACIDADE="2" 
+                 TXT_TIPO="compacto" TXT_PORTE="medio" TXT_DESC="Carro para dar roles." ID_Motorista="7" /> 
+    
+    <TB_Veiculo DT_ANOF="2015" TXT_MODELO="Honda Civic" TXT_FABRICANTE="Honda" NUM_CAPACIDADE="6" 
+                 TXT_TIPO="sedan" TXT_PORTE="medio" TXT_DESC="Carro sedan para pessoas de classe" ID_Motorista="8" /> 
+             
       
-      
-<!--        <TB_Veiculo DT_ANOF="2010" TXT_MODELO="Fiat Uno" TXT_FABRICANTE="Fiat" NUM_CAPACIDADE="5" 
-                 TXT_TIPO="compacto" TXT_PORTE="medio" TXT_DESC="Um carro util para fazer atividades diarias pela cidade." />  -->
 </dataset>

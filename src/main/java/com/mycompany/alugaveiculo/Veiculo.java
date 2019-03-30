@@ -68,6 +68,14 @@ public class Veiculo implements Serializable {
     public void setPlacas(Collection<String> placas) {
         this.placas = placas;
     }
+    
+    public Motorista getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
+    }
 
     public String getAnofabricacao() {
         return anofabricacao;
