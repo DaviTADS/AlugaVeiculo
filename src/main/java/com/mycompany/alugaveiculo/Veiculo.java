@@ -22,9 +22,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TB_Veiculo")
 public class Veiculo implements Serializable {
-
-
-    
+ 
     @Id
     @Column(name = "ID_Veiculo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

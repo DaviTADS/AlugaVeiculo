@@ -317,25 +317,7 @@ public class TesteEntidades extends GenericTest {
 
         return motorista;
     }
-    
-    public Veiculo criarVeiculo2(){
-        Veiculo veiculo = new Veiculo();
-        veiculo.setAnofabricacao("2000");
-        veiculo.setCapacidade(6);
-        veiculo.setFabricante("Honda");
-        veiculo.setImagem(Byte.MIN_VALUE);
-        veiculo.setModelo("F156");
-        veiculo.setPorte("Grande");
-        veiculo.setTipo("Esportivo");
-        veiculo.setDescricao("Descrição...");
-        List<String> placas = new ArrayList();
-        placas.add("AXM52");
-        placas.add("V5C0D3");
-        veiculo.setPlacas(placas);
-        
-        
-        return veiculo;
-    }    
+       
     
     private Aluguel criarAluguel(){
         Aluguel aluguel = new Aluguel();
