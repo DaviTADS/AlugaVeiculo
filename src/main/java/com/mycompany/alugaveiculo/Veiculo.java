@@ -14,6 +14,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -29,7 +32,9 @@ public class Veiculo implements Serializable {
     @Column(name = "ID_Veiculo")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
-
+    
+    @NotBlank
+    @Size(max = 50)
     @ElementCollection
     @CollectionTable(name = "TB_Placa",
             joinColumns = @JoinColumn(name = "ID_Veiculo"))
@@ -40,24 +45,36 @@ public class Veiculo implements Serializable {
     @JoinColumn(name = "ID_Motorista", referencedColumnName = "ID_Pessoa")
     private Motorista motorista;
     
+    @NotBlank
     @Column(name = "DT_ANOF", nullable = true)
     protected String anofabricacao;
     
+    @NotBlank
+    @Size(max = 40)
     @Column(name="TXT_MODELO",length = 40 , nullable = false)
     protected String modelo;
     
+    @NotBlank
+    @Size(max = 20)
     @Column(name="TXT_FABRICANTE",length = 20 , nullable = false)
     protected String fabricante;
     
+    @NotNull
     @Column(name="NUM_CAPACIDADE", nullable = false)
     protected int capacidade;
     
+    @NotBlank
+    @Size(max = 20)
     @Column(name="TXT_TIPO",length = 20 , nullable = false)
     protected String tipo;
     
+    @NotBlank
+    @Size(max = 40)
     @Column(name="TXT_PORTE",length = 40 , nullable = false)
     protected String porte;
     
+    @NotBlank
+    @Size(max = 200, min = 50)
     @Column(name = "TXT_DESC", length = 100 , nullable = false)
     protected String descricao;
 
@@ -67,6 +84,14 @@ public class Veiculo implements Serializable {
 
     public void setPlacas(Collection<String> placas) {
         this.placas = placas;
+    }
+    
+    public Motorista getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
     }
 
     public String getAnofabricacao() {

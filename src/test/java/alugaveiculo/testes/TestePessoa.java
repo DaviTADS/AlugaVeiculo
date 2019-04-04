@@ -11,7 +11,10 @@ import com.mycompany.alugaveiculo.Veiculo;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.persistence.CacheRetrieveMode;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -44,15 +47,7 @@ public class TestePessoa extends GenericTest {
         logger.info("id da pessoa juridica inserida = "+empresa.getId());
     }
     
-    @Test
-    public void persistirMotorista() {
-        logger.info("Executando persistirMotorista()");
-        Motorista motorista = criarMotorista();
-        em.persist(motorista);
-        em.flush();
-        assertNotNull(motorista.getId());
-        logger.info("id do motorista inserido = "+motorista.getId());
-    }
+    
     
     @Test
     public void atualizarPessoaFisica(){
@@ -61,7 +56,9 @@ public class TestePessoa extends GenericTest {
         pessoaFisica.setEmail("email@hotmail.com");
         pessoaFisica.setCreditos("420");
         em.flush();
-        PessoaFisica pessoaBuscada = em.find(PessoaFisica.class,1L);
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        PessoaFisica pessoaBuscada = em.find(PessoaFisica.class,1L,properties);
         assertEquals("email@hotmail.com", pessoaBuscada.getEmail());
         assertEquals("420",pessoaBuscada.getCreditos());
         
@@ -74,7 +71,9 @@ public class TestePessoa extends GenericTest {
         pessoaFisica.setNome("Marcio");
         em.clear();
         em.merge(pessoaFisica);
-        PessoaFisica pessoaBuscada = em.find(PessoaFisica.class, 2L);
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        PessoaFisica pessoaBuscada = em.find(PessoaFisica.class, 2L,properties);
         assertEquals("Marcio", pessoaBuscada.getNome());
     }
     
@@ -85,7 +84,9 @@ public class TestePessoa extends GenericTest {
         pessoaJuridica.setEmail("email2@hotmail.com");
         pessoaJuridica.setCreditos("520");
         em.flush();
-        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class,5L);
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class,5L,properties);
         assertEquals("email2@hotmail.com", pessoaJBuscada.getEmail());
         assertEquals("520",pessoaJBuscada.getCreditos());
         
@@ -98,22 +99,14 @@ public class TestePessoa extends GenericTest {
         pessoaJuridica.setRazaosocial("Coca Cola Industrias Brasileiras Ltda");
         em.clear();
         em.merge(pessoaJuridica);
-        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class, 11L);
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class, 11L,properties);
         assertEquals("Coca Cola Industrias Brasileiras Ltda", pessoaJBuscada.getRazaosocial());
     
     }
     
-    @Test
-    public void atualizarMotorista(){
-        logger.info("Executando atualizarMotorista()");
-        Motorista motorista = em.find(Motorista.class,8L);
-        motorista.setReputacao(Reputacao.Ruim);
-        motorista.setSenha("555");
-        em.flush();
-        Motorista motoristaBuscado = em.find(Motorista.class,8L);
-        assertEquals("555", motoristaBuscado.getSenha());
-        assertEquals(Reputacao.Ruim,motorista.getReputacao());
-    }
+    
     
     @Test
     public void deletarPessoaFisica(){
@@ -134,58 +127,18 @@ public class TestePessoa extends GenericTest {
         
     }
     
-    @Test
-    public void persistVeiculo() {
-        logger.info("Executando persistVeiculo()");
-        Veiculo veiculo = criarVeiculo2();
-        em.persist(veiculo);
-        em.flush();
-        assertNotNull(veiculo.getId());
-        
-    }
+//    @Test
+//    public void persistVeiculo() {
+//        logger.info("Executando persistVeiculo()");
+//        Motorista motorista = em.find(Motorista.class,8L);
+//        Veiculo veiculo = criarVeiculo2();
+//        veiculo.setMotorista(motorista);
+//        em.persist(veiculo);
+//        em.flush();
+//        assertNotNull(veiculo.getId());
+//        
+//    }
     
-    @Test
-    public void persistirAluguel(){
-        logger.info("Executando persistirAluguel()");
-        Aluguel aluguel = criarAluguel();
-        em.persist(aluguel);
-        em.flush();
-        assertNotNull(aluguel.getId());
-        logger.info("id do aluguel inserido = "+aluguel.getId());
-        
-    }
-    
-    @Test
-    public void atualizarAluguel(){
-         logger.info("Executando atualizarAluguel()");
-         Aluguel aluguel = em.find(Aluguel.class,1L);
-         aluguel.setPreco("R$2500");
-         em.flush();
-         Aluguel aluguelalterado = em.find(Aluguel.class,1L);
-         assertEquals("R$2500",aluguel.getPreco());
-    }
-    
-    @Test
-    public void atualizarAluguelMerge(){
-         logger.info("Executando atualizarMergeAluguel()");
-         Aluguel aluguel = em.find(Aluguel.class,3L);
-         aluguel.setPreco("R$3000");
-         em.clear();
-         em.merge(aluguel);
-         Aluguel aluguelalterado = em.find(Aluguel.class,3L);
-         assertEquals("R$3000",aluguel.getPreco());
-    }
-    
-    @Test
-    public void deletarAluguel(){
-        logger.info("Executando atualizarMergeAluguel()");
-        Aluguel aluguel = em.find(Aluguel.class, 2L);
-        em.remove(aluguel);
-        Aluguel aluguelexcluido = em.find(Aluguel.class, 2L);
-        assertNull(aluguelexcluido);
-        
-    }
-        
     
     private PessoaFisica criarPessoaFisica(){
         PessoaFisica pessoaf = new PessoaFisica();
@@ -269,29 +222,29 @@ public class TestePessoa extends GenericTest {
         return veiculo;
     }    
     
-    private Aluguel criarAluguel(){
-        Aluguel aluguel = new Aluguel();
-        Calendar ci = Calendar.getInstance();
-        ci.set(Calendar.YEAR, 2019);
-        ci.set(Calendar.MONTH, Calendar.APRIL);
-        ci.set(Calendar.DAY_OF_MONTH, 01);
-        aluguel.setDatainicio(ci.getTime());
-        Calendar cf = Calendar.getInstance();
-        cf.set(Calendar.YEAR, 2019);
-        cf.set(Calendar.MONTH, Calendar.APRIL);
-        cf.set(Calendar.DAY_OF_MONTH, 02);
-        aluguel.setDatafinal(cf.getTime());
-        aluguel.setPreco("R$1500");
-        PessoaFisica pessoa = criarPessoaFisica02();
-        aluguel.setPessoa(pessoa);
-        List<Veiculo> veiculos = new ArrayList();
-        Veiculo veiculo01 = criarVeiculo();
-        veiculos.add(veiculo01);
-        aluguel.setVeiculos(veiculos);
-        
-        
-        return aluguel;
-    }
+//    private Aluguel criarAluguel(){
+//        Aluguel aluguel = new Aluguel();
+//        Calendar ci = Calendar.getInstance();
+//        ci.set(Calendar.YEAR, 2019);
+//        ci.set(Calendar.MONTH, Calendar.APRIL);
+//        ci.set(Calendar.DAY_OF_MONTH, 01);
+//        aluguel.setDatainicio(ci.getTime());
+//        Calendar cf = Calendar.getInstance();
+//        cf.set(Calendar.YEAR, 2019);
+//        cf.set(Calendar.MONTH, Calendar.APRIL);
+//        cf.set(Calendar.DAY_OF_MONTH, 02);
+//        aluguel.setDatafinal(cf.getTime());
+//        aluguel.setPreco("R$1500");
+//        PessoaFisica pessoa = criarPessoaFisica02();
+//        aluguel.setPessoa(pessoa);
+//        List<Veiculo> veiculos = new ArrayList();
+//        Veiculo veiculo01 = criarVeiculo();
+//        veiculos.add(veiculo01);
+//        aluguel.setVeiculos(veiculos);
+//        
+//        
+//        return aluguel;
+//    }
     
     
     private PessoaFisica criarPessoaFisica02() {

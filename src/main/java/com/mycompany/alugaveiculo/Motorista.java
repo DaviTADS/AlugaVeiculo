@@ -2,7 +2,6 @@ package com.mycompany.alugaveiculo;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
@@ -10,11 +9,14 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
 
 /**
  *
@@ -26,7 +28,8 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name="ID_Pessoa", referencedColumnName = "ID_Pessoa")
 public class Motorista extends Pessoa implements Serializable {
     
-    
+    @NotBlank
+    @Size(max = 3, min = 1)
     @ElementCollection
     @CollectionTable(name = "TB_Habilitacoes",
             joinColumns = @JoinColumn(name = "ID_Pessoa"))
@@ -34,14 +37,19 @@ public class Motorista extends Pessoa implements Serializable {
     @Column(name = "TXT_Habilitacao", table = "TB_Habilitacoes", nullable = false)
     private List<String> habilitacoes;
     
-
+    @NotBlank
+    @Size(max = 60)
+    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{exemplo.jpa.Usuario.nome}")
     @Column(name = "TXT_SOBRENOME", length = 60, nullable = false)
     private String sobrenome;
     
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "TXT_REPUTACAO", length = 20, nullable = false)
     private Reputacao reputacao;
     
+    @NotNull
+    @CPF
     @Column(name = "TXT_CPF", length = 11 , nullable = false)
     private String cpf;
 

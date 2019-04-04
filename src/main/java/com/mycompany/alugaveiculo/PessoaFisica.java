@@ -10,6 +10,11 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
 
 /**
  *
@@ -20,19 +25,23 @@ import javax.persistence.Table;
 @DiscriminatorValue(value = "F")
 @PrimaryKeyJoinColumn(name = "ID_Pessoa", referencedColumnName = "ID_Pessoa")
 public class PessoaFisica extends Pessoa implements Serializable {
-
+    
     @OneToMany(mappedBy = "pessoa",fetch = FetchType.LAZY,
         cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Aluguel> alugueis; 
     
+    @NotBlank
+    @Size(max = 60)
+    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{exemplo.jpa.Usuario.nome}")
     @Column(name = "TXT_SOBRENOME", length = 60, nullable = false)
     private String sobrenome;
-
-   
-
+    
+    @NotNull
+    @CPF
     @Column(name = "TXT_CPF", length = 11, nullable = false)
     private String cpf;
-
+    
+    @NotBlank
     @Column(name = "TXT_CREDITOS", nullable = true)
     private String creditos;
     

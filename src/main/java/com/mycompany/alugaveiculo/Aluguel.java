@@ -3,7 +3,6 @@ package com.mycompany.alugaveiculo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,12 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -29,11 +28,13 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "TB_Aluguel")
 public class Aluguel implements Serializable{
-  
+
+@NotNull  
 @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL , optional = false)
 @JoinColumn(name = "ID_Pessoa", referencedColumnName = "ID_Pessoa")
 private Pessoa pessoa;
 
+@NotNull
 @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 @JoinTable(name = "TB_Aluguel_Veiculo", joinColumns = { 
     @JoinColumn(name = "ID_Aluguel")},
@@ -47,6 +48,7 @@ private List<Veiculo> veiculos;
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
 
+
 @Temporal(TemporalType.DATE)
 @Column(name = "DT_INICIO", nullable = false)
 private Date datainicio;
@@ -55,6 +57,8 @@ private Date datainicio;
 @Column(name = "DT_FINAL", nullable = false)
 private Date datafinal;
 
+@NotBlank
+@Size(max = 4, min = 3)
 @Column(name="TXT_PRECO",length = 20, nullable = false)
 private String preco;
 

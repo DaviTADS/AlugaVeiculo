@@ -15,6 +15,11 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
@@ -36,7 +41,8 @@ public abstract class Pessoa implements Serializable {
     @Column(name = "ID_Pessoa")
     @GeneratedValue(strategy = GenerationType.IDENTITY)    
     protected Long id;
-
+    
+    @Size(max = 4)
     @ElementCollection
     @CollectionTable(name = "TB_Telefone",
             joinColumns = @JoinColumn(name = "ID_Pessoa"))
@@ -44,12 +50,21 @@ public abstract class Pessoa implements Serializable {
     @Column(name = "TXT_TELEFONE", table = "TB_Telefone", nullable = false)
     protected Collection<String> telefones;
     
+    @NotBlank
+    @Size(max = 15)
+    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{exemplo.jpa.Usuario.nome}")
     @Column(name = "TXT_NOME", length = 100, nullable = false)
     protected String nome;
-
+    
+    @NotBlank
+    @Size(min = 6, max = 20)
+    @Pattern(regexp = "((?=.*\\p{Digit})(?=.*\\p{Lower})(?=.*\\p{Upper})(?=.*\\p{Punct}).{6,20})", 
+            message = "{exemplo.jpa.Usuario.senha}")
     @Column(name = "TXT_SENHA", length = 8, nullable = false)
     protected String senha;
-
+    
+    @NotNull
+    @Email
     @Column(name="TXT_EMAIL", length=30, nullable = false)
     protected String email;
 

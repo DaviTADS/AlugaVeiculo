@@ -10,6 +10,11 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 /**
  *
@@ -25,12 +30,18 @@ public class PessoaJuridica extends Pessoa implements Serializable {
         cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Aluguel> alugueis; 
     
+    @NotBlank
+    @Size(max = 50)
+    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{com.mycompany.alugaveiculo.PessoaJuridica.razaosocial}")
     @Column(name = "TXT_RAZAOSOCIAL", length = 50, nullable = false)
     private String razaosocial;
-
+    
+    @NotNull
+    @CNPJ
     @Column(name = "TXT_CNPJ", length = 20, nullable = false)
     private String cnpj;
-
+    
+    @NotBlank
     @Column(name = "TXT_CREDITOS",nullable = true)
     private String creditos;
 
