@@ -38,6 +38,7 @@ public class PessoaFisica extends Pessoa implements Serializable {
     
     @NotNull
     @CPF
+
     @Column(name = "TXT_CPF", length = 11, nullable = false)
     private String cpf;
     
