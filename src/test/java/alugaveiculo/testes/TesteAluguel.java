@@ -120,7 +120,7 @@ public class TesteAluguel extends GenericTest {
         veiculo.setModelo("C4 PALLAS");
         veiculo.setDescricao("Carro Sedan aconchegante ideal para atender a eventos de gala.");
         veiculo.setPorte("Medio");
-        veiculo.setTipo("Sedan");
+        veiculo.setTipo("Sedã");
         List<String> placas = new ArrayList();
         placas.add("OPK5477");
         placas.add("OPL2369");

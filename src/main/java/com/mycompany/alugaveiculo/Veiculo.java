@@ -1,6 +1,7 @@
 package com.mycompany.alugaveiculo;
 
 import alugaveiculo.validadores.ValidaFabricante;
+import alugaveiculo.validadores.ValidaTipo;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.CascadeType;
@@ -64,8 +65,8 @@ public class Veiculo implements Serializable {
     protected int capacidade;
     
     @NotBlank
-    @Size(max = 20)
-    @Column(name="TXT_TIPO",length = 20 , nullable = false)
+    @ValidaTipo
+    @Column(name="TXT_TIPO", nullable = false)
     protected String tipo;
     
     @NotBlank

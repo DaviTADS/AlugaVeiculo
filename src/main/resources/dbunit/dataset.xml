@@ -46,13 +46,13 @@
     
     
     <TB_Veiculo DT_ANOF="2010" TXT_MODELO="Fiat Uno" TXT_FABRICANTE="Fiat" NUM_CAPACIDADE="5" 
-                 TXT_TIPO="compacto" TXT_PORTE="medio" TXT_DESC="Um carro util para fazer atividades diarias pela cidade." />   
+                 TXT_TIPO="Hatch" TXT_PORTE="medio" TXT_DESC="Um carro util para fazer atividades diarias pela cidade." />   
         
     <TB_Veiculo DT_ANOF="2070" TXT_MODELO="Fiat Linux" TXT_FABRICANTE="Fiat" NUM_CAPACIDADE="2" 
-                 TXT_TIPO="compacto" TXT_PORTE="medio" TXT_DESC="Carro para dar roles." ID_Motorista="7" /> 
+                 TXT_TIPO="Hatch" TXT_PORTE="medio" TXT_DESC="Carro para dar roles." ID_Motorista="7" /> 
     
     <TB_Veiculo DT_ANOF="2015" TXT_MODELO="Honda Civic" TXT_FABRICANTE="Honda" NUM_CAPACIDADE="6" 
-                 TXT_TIPO="sedan" TXT_PORTE="medio" TXT_DESC="Carro sedan para pessoas de classe" ID_Motorista="8" /> 
+                 TXT_TIPO="Sedã" TXT_PORTE="medio" TXT_DESC="Carro sedan para pessoas de classe" ID_Motorista="8" /> 
              
       
 </dataset>
