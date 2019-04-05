@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -22,6 +24,16 @@ import org.hibernate.validator.constraints.br.CPF;
  */
 @Entity
 @Table(name = "TB_PessoaFisica")
+
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "PessoaF.PorNome",
+                    query = "SELECT f FROM PessoaFisica f WHERE f.nome LIKE :nome ORDER BY f.id"
+            )
+        }
+)
+
 @DiscriminatorValue(value = "F")
 @PrimaryKeyJoinColumn(name = "ID_Pessoa", referencedColumnName = "ID_Pessoa")
 public class PessoaFisica extends Pessoa implements Serializable {
