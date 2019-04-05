@@ -6,10 +6,8 @@
 package alugaveiculo.testes.Jpql;
 
 import alugaveiculo.testes.GenericTest;
-import com.mycompany.alugaveiculo.Pessoa;
 import com.mycompany.alugaveiculo.PessoaFisica;
 import java.util.List;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -68,6 +66,13 @@ public class TestePessoaFisicaJPQL extends GenericTest {
         assertEquals(3, pessoasf.size());
     }
     
-    
+    @Test
+    public void quantidadePessoasFisicas() {
+        logger.info("Executando quantidadePessoasFisicas()");
+        TypedQuery<Long> query = em.createQuery(
+                "SELECT COUNT(f) FROM PessoaFisica f WHERE f.cpf IS NOT NULL", Long.class);
+        Long resultado = query.getSingleResult();
+        assertEquals(new Long(4), resultado);
+    }
     
 }
