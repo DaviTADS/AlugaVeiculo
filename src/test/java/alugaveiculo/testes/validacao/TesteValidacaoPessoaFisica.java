@@ -16,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import org.hamcrest.CoreMatchers;
@@ -122,6 +123,23 @@ public class TesteValidacaoPessoaFisica {
             assertNull(pessoaf.getId());
             throw ex;
         
+        }
+    }
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void atualizarPessoaFisicaInvalido() {
+        TypedQuery<PessoaFisica> query = em.createQuery("SELECT f FROM PessoaFisica f WHERE f.cpf like :cpf", PessoaFisica.class);
+        query.setParameter("cpf", "515.153.640-03");
+        PessoaFisica pessoaf = query.getSingleResult();
+        pessoaf.setSenha("testando1234");
+
+        try {
+            em.flush();
+        } catch (ConstraintViolationException ex) {           
+            ConstraintViolation violation = ex.getConstraintViolations().iterator().next();
+            assertEquals("Senha incorreta, a senha deve possuir pelo menos um caractere de: pontuação, maiúscula, minúscula e número.", violation.getMessage());
+            assertEquals(1, ex.getConstraintViolations().size());
+            throw ex;
         }
     }
     
