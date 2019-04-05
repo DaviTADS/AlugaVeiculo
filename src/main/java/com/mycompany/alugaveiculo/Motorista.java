@@ -28,7 +28,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @PrimaryKeyJoinColumn(name="ID_Pessoa", referencedColumnName = "ID_Pessoa")
 public class Motorista extends Pessoa implements Serializable {
     
-    @NotBlank
+    //@NotBlank
     @Size(max = 3, min = 1)
     @ElementCollection
     @CollectionTable(name = "TB_Habilitacoes",
@@ -39,7 +39,7 @@ public class Motorista extends Pessoa implements Serializable {
     
     @NotBlank
     @Size(max = 60)
-    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{exemplo.jpa.Usuario.nome}")
+    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{com.mycompany.alugaveiculo.Motorista.sobrenome}")
     @Column(name = "TXT_SOBRENOME", length = 60, nullable = false)
     private String sobrenome;
     
@@ -50,7 +50,7 @@ public class Motorista extends Pessoa implements Serializable {
     
     @NotNull
     @CPF
-    @Column(name = "TXT_CPF", length = 11 , nullable = false)
+    @Column(name = "TXT_CPF", nullable = false)
     private String cpf;
 
     public List<String> getHabilitacoes() {

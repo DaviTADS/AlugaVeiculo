@@ -32,17 +32,17 @@ public class PessoaJuridica extends Pessoa implements Serializable {
     
     @NotBlank
     @Size(max = 50)
-    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{com.mycompany.alugaveiculo.PessoaJuridica.razaosocial}")
+   // @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{com.mycompany.alugaveiculo.PessoaJuridica.razaosocial}")
     @Column(name = "TXT_RAZAOSOCIAL", length = 50, nullable = false)
     private String razaosocial;
     
     @NotNull
     @CNPJ
-    @Column(name = "TXT_CNPJ", length = 20, nullable = false)
+    @Column(name = "TXT_CNPJ", nullable = false)
     private String cnpj;
     
     @NotBlank
-    @Column(name = "TXT_CREDITOS",nullable = true)
+    @Column(name = "TXT_CREDITOS")
     private String creditos;
 
 

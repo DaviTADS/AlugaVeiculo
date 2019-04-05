@@ -1,5 +1,6 @@
 package com.mycompany.alugaveiculo;
 
+import alugaveiculo.validadores.ValidaFabricante;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.CascadeType;
@@ -31,7 +32,7 @@ public class Veiculo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     
-    @NotBlank
+    //@NotBlank
     @Size(max = 50)
     @ElementCollection
     @CollectionTable(name = "TB_Placa",
@@ -54,6 +55,7 @@ public class Veiculo implements Serializable {
     
     @NotBlank
     @Size(max = 20)
+    @ValidaFabricante
     @Column(name="TXT_FABRICANTE",length = 20 , nullable = false)
     protected String fabricante;
     
@@ -72,8 +74,8 @@ public class Veiculo implements Serializable {
     protected String porte;
     
     @NotBlank
-    @Size(max = 200, min = 50)
-    @Column(name = "TXT_DESC", length = 100 , nullable = false)
+    @Size(max = 200)
+    @Column(name = "TXT_DESC", length = 200 , nullable = false)
     protected String descricao;
 
     public Collection<String> getPlacas() {

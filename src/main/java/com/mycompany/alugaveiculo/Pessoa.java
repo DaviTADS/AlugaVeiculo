@@ -51,21 +51,20 @@ public abstract class Pessoa implements Serializable {
     protected Collection<String> telefones;
     
     @NotBlank
-    @Size(max = 15)
-    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{exemplo.jpa.Usuario.nome}")
-    @Column(name = "TXT_NOME", length = 100, nullable = false)
+    @Size(max = 30, min = 3)
+    @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{com.mycompany.alugaveiculo.Pessoa.nome}")
+    @Column(name = "TXT_NOME", length = 30, nullable = false)
     protected String nome;
     
     @NotBlank
-    @Size(min = 6, max = 20)
-    @Pattern(regexp = "((?=.*\\p{Digit})(?=.*\\p{Lower})(?=.*\\p{Upper})(?=.*\\p{Punct}).{6,20})", 
-            message = "{exemplo.jpa.Usuario.senha}")
+    @Pattern(regexp = "((?=.*\\p{Digit})(?=.*\\p{Lower})(?=.*\\p{Upper})(?=.*\\p{Punct}).{8})", 
+            message = "{com.mycompany.alugaveiculo.Pessoa.senha}")
     @Column(name = "TXT_SENHA", length = 8, nullable = false)
     protected String senha;
     
     @NotNull
     @Email
-    @Column(name="TXT_EMAIL", length=30, nullable = false)
+    @Column(name="TXT_EMAIL", nullable = false)
     protected String email;
 
     public Long getId() {

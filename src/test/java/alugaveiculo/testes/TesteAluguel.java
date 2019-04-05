@@ -9,7 +9,10 @@ import com.mycompany.alugaveiculo.Veiculo;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.persistence.CacheRetrieveMode;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -34,18 +37,22 @@ public class TesteAluguel extends GenericTest {
          Aluguel aluguel = em.find(Aluguel.class,1L);
          aluguel.setPreco("R$2500");
          em.flush();
-         Aluguel aluguelalterado = em.find(Aluguel.class,1L);
+         Map<String, Object> properties = new HashMap<>();
+         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+         Aluguel aluguelalterado = em.find(Aluguel.class,1L,properties);
          assertEquals("R$2500",aluguel.getPreco());
     }
     
     @Test
     public void atualizarAluguelMerge(){
-         logger.info("Executando atualizarMergeAluguel()");
+         logger.info("Executando atualizarAluguelMerge()");
          Aluguel aluguel = em.find(Aluguel.class,3L);
          aluguel.setPreco("R$3000");
          em.clear();
          em.merge(aluguel);
-         Aluguel aluguelalterado = em.find(Aluguel.class,3L);
+         Map<String, Object> properties = new HashMap<>();
+         properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+         Aluguel aluguelalterado = em.find(Aluguel.class,3L,properties);
          assertEquals("R$3000",aluguel.getPreco());
     }
     
@@ -64,12 +71,12 @@ public class TesteAluguel extends GenericTest {
         Aluguel aluguel = new Aluguel();
         Calendar ci = Calendar.getInstance();
         ci.set(Calendar.YEAR, 2019);
-        ci.set(Calendar.MONTH, Calendar.APRIL);
+        ci.set(Calendar.MONTH, Calendar.MAY);
         ci.set(Calendar.DAY_OF_MONTH, 01);
         aluguel.setDatainicio(ci.getTime());
         Calendar cf = Calendar.getInstance();
         cf.set(Calendar.YEAR, 2019);
-        cf.set(Calendar.MONTH, Calendar.APRIL);
+        cf.set(Calendar.MONTH, Calendar.MAY);
         cf.set(Calendar.DAY_OF_MONTH, 02);
         aluguel.setDatafinal(cf.getTime());
         aluguel.setPreco("R$1500");
@@ -93,10 +100,10 @@ public class TesteAluguel extends GenericTest {
         telefones.add(telefone);
         pessoa01.setNome("Anselmo");
         pessoa01.setSobrenome("Noronha");
-        pessoa01.setSenha("456");
+        pessoa01.setSenha("Ab8.tryo");
         pessoa01.setTelefones(telefones);
         pessoa01.setEmail("whatever@gmail.com");
-        pessoa01.setCpf("15648923578");
+        pessoa01.setCpf("938.102.030-25");
         pessoa01.setCreditos("200");
 
         return pessoa01;
@@ -131,9 +138,9 @@ public class TesteAluguel extends GenericTest {
         telefones.add(telefone2);
         motorista.setNome("Pilotinho");
         motorista.setSobrenome("Lotovisk");
-        motorista.setSenha("123");
+        motorista.setSenha("7Rt,trea");
         motorista.setTelefones(telefones);
-        motorista.setCpf("63940255009");
+        motorista.setCpf("326.644.710-74");
         motorista.setEmail("pilotinho@gmail.com");
         String habilitacaoMoto = "Moto";
         String habilitacaoCarro = "Carro";

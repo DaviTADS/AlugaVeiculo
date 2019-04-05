@@ -58,7 +58,7 @@ private Date datainicio;
 private Date datafinal;
 
 @NotBlank
-@Size(max = 4, min = 3)
+@Size(max = 7, min = 5)
 @Column(name="TXT_PRECO",length = 20, nullable = false)
 private String preco;
 

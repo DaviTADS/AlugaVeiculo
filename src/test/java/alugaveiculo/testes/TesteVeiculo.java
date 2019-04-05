@@ -6,8 +6,10 @@ import com.mycompany.alugaveiculo.Reputacao;
 import com.mycompany.alugaveiculo.Veiculo;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
-import org.junit.After;
+import java.util.Map;
+import javax.persistence.CacheRetrieveMode;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
@@ -42,7 +44,9 @@ public class TesteVeiculo extends GenericTest{
         veiculo.setAnofabricacao("2011");
         veiculo.setModelo("Fiat Uno Eco");
         em.flush();
-        Veiculo veiculoBuscado = em.find(Veiculo.class,1L);
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        Veiculo veiculoBuscado = em.find(Veiculo.class,1L,properties);
         assertEquals("2011", veiculoBuscado.getAnofabricacao());
         assertEquals("Fiat Uno Eco",veiculoBuscado.getModelo());
     }
@@ -54,7 +58,9 @@ public class TesteVeiculo extends GenericTest{
         veiculo.setAnofabricacao("1993");
         em.clear();
         em.merge(veiculo);
-        Veiculo veiculoBuscado = em.find(Veiculo.class, 2L);
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+        Veiculo veiculoBuscado = em.find(Veiculo.class, 2L,properties);
         assertEquals("1993", veiculoBuscado.getAnofabricacao());
         assertNotEquals("1992",veiculoBuscado.getAnofabricacao());
     
@@ -80,7 +86,7 @@ public class TesteVeiculo extends GenericTest{
         veiculo.setModelo("F156");
         veiculo.setPorte("Grande");
         veiculo.setTipo("Esportivo");
-        veiculo.setDescricao("Descrição...");
+        veiculo.setDescricao("Descrição legal para um carro");
         List<String> placas = new ArrayList();
         placas.add("AXM52");
         placas.add("V5C0D3");
@@ -99,10 +105,10 @@ public class TesteVeiculo extends GenericTest{
         telefones.add(telefone2);
         motorista.setNome("Barrigrelo");
         motorista.setSobrenome("Lotovisk");
-        motorista.setSenha("123");
+        motorista.setSenha("2gtde.Lo");
         motorista.setTelefones(telefones);
-        motorista.setCpf("63940255009");
-        motorista.setEmail("pilotinho@gmail.com");
+        motorista.setCpf("109.755.680-86");
+        motorista.setEmail("pilotinho54@gmail.com");
         String habilitacaoMoto = "Moto";
         String habilitacaoCarro = "Carro";
         List<String> habilitacoes = new ArrayList();
