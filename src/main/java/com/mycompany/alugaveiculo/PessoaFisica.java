@@ -31,7 +31,7 @@ public class PessoaFisica extends Pessoa implements Serializable {
     private List<Aluguel> alugueis; 
     
     @NotBlank
-    @Size(max = 60)
+    @Size(max = 30 ,min = 3)
     @Pattern(regexp = "\\p{Upper}{1}\\p{Lower}+", message = "{com.mycompany.alugaveiculo.PessoaFisica.sobrenome}")
     @Column(name = "TXT_SOBRENOME", length = 60, nullable = false)
     private String sobrenome;
