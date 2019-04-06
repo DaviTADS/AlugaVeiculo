@@ -26,11 +26,6 @@ public class TesteAluguelJPQL extends GenericTest {
         logger.info("Executando AluguelporPessoaSQL()");
         TypedQuery<Aluguel> query = em.createNamedQuery("Aluguel.PorNome", Aluguel.class);
         List<Aluguel> alugueis = query.getResultList();
-        assertEquals(2, alugueis.size());
-
-    }
-    
+        assertEquals(3, alugueis.size());
+    }    
 }
-
-
-
