@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +29,14 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 @Entity
 @Table(name = "TB_Aluguel")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name = "Aluguel.PorNome",
+                    query = "SELECT a.ID_ALUGUEL FROM tb_aluguel a INNER JOIN tb_pessoa p ON (a.ID_Pessoa = p.ID_Pessoa)"
+            )
+        }
+)
 public class Aluguel implements Serializable{
 
 @NotNull  

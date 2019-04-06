@@ -94,6 +94,7 @@ public class TesteValidacaoPessoaFisica {
         pessoaf.setCreditos(""); // creditos em branco
         em.persist(pessoaf);
         em.flush();
+        
         }
         catch(ConstraintViolationException ex){
             Logger.getGlobal().info(ex.getMessage());
