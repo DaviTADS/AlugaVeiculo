@@ -97,6 +97,7 @@ public class TesteValidacaoMotorista {
         List<String> habilitacoes = new ArrayList();
         habilitacoes.add(habilitacaoMoto);
         habilitacoes.add(habilitacaoCarro);
+        motorista.setHabilitacoes(habilitacoes);
         em.persist(motorista);
         em.flush();
         }

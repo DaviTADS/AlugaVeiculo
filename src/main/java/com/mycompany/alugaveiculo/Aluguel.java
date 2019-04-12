@@ -16,8 +16,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQueries;
 import javax.persistence.NamedNativeQuery;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,11 +28,11 @@ import org.hibernate.validator.constraints.NotBlank;
  * @author davi, davydadriel
  */
 @Entity
-@Table(name = "TB_ALUGUEL")
+@Table(name = "TB_Aluguel")
 @NamedNativeQueries(
         {
             @NamedNativeQuery(
-                    name = "Aluguel.PorNome",
+                    name = "Aluguel.Pessoa",
                     query = "SELECT a.ID_Aluguel, a.DT_INICIO, a.DT_FINAL, a.TXT_PRECO FROM TB_Aluguel a INNER JOIN TB_Pessoa p ON (a.ID_Pessoa = p.ID_Pessoa)",
                     resultClass = Aluguel.class
             )
@@ -42,12 +40,12 @@ import org.hibernate.validator.constraints.NotBlank;
 )
 public class Aluguel implements Serializable{
 
-//@NotNull  
+@NotNull  
 @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL , optional = false)
 @JoinColumn(name = "ID_Pessoa", referencedColumnName = "ID_Pessoa")
 private Pessoa pessoa;
 
-//@NotNull
+@NotNull
 @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 @JoinTable(name = "TB_Aluguel_Veiculo", joinColumns = { 
     @JoinColumn(name = "ID_Aluguel")},

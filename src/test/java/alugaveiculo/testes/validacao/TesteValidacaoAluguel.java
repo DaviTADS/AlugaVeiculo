@@ -89,7 +89,7 @@ public class TesteValidacaoAluguel {
     public void CriarAluguelInvalido() {
     
        Aluguel aluguel = new Aluguel();
-       Collection<String> telefones = new ArrayList();
+      
        Calendar ci = new GregorianCalendar();
        Calendar cf = new GregorianCalendar();
         try{

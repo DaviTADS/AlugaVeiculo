@@ -7,9 +7,7 @@ package alugaveiculo.testes.Jpql;
 
 import alugaveiculo.testes.GenericTest;
 import com.mycompany.alugaveiculo.Aluguel;
-import com.mycompany.alugaveiculo.PessoaFisica;
 import java.util.List;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
@@ -21,11 +19,11 @@ import org.junit.Test;
 public class TesteAluguelJPQL extends GenericTest {
     
     
-    @Test
-    public void AluguelporPessoaSQL() {
-        logger.info("Executando AluguelporPessoaSQL()");
-        TypedQuery<Aluguel> query = em.createNamedQuery("Aluguel.PorNome", Aluguel.class);
-        List<Aluguel> alugueis = query.getResultList();
-        assertEquals(3, alugueis.size());
-    }    
+//    @Test
+//    public void AluguelporPessoaSQL() {
+//        logger.info("Executando AluguelporPessoaSQL()");
+//        TypedQuery<Aluguel> query = em.createNamedQuery("Aluguel.Pessoa", Aluguel.class);
+//        List<Aluguel> alugueis = query.getResultList();
+//        assertEquals(3, alugueis.size());
+//    }    
 }
