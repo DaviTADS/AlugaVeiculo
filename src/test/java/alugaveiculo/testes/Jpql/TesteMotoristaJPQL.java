@@ -5,10 +5,12 @@
  */
 package alugaveiculo.testes.Jpql;
 
+import alugaveiculo.testes.GenericTest;
+
 /**
  *
  * @author davi
  */
-public class TesteMotoristaJPQL {
+public class TesteMotoristaJPQL extends GenericTest {
     
 }

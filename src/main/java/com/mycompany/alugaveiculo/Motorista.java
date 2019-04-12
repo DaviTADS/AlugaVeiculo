@@ -1,5 +1,6 @@
 package com.mycompany.alugaveiculo;
 
+import alugaveiculo.validadores.ValidaHabilitacao;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CollectionTable;
@@ -31,6 +32,7 @@ public class Motorista extends Pessoa implements Serializable {
     
     @Size(max = 3, min = 1)
     @ElementCollection
+   
     @CollectionTable(name = "TB_Habilitacoes",
             joinColumns = @JoinColumn(name = "ID_Pessoa"))
     //@Basic(fetch = FetchType.LAZY)

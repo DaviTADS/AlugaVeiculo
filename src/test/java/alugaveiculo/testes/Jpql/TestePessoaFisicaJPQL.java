@@ -70,7 +70,7 @@ public class TestePessoaFisicaJPQL extends GenericTest {
     public void quantidadePessoasFisicas() {
         logger.info("Executando quantidadePessoasFisicas()");
         TypedQuery<Long> query = em.createQuery(
-                "SELECT COUNT(f) FROM PessoaFisica f WHERE f.cpf IS NOT NULL", Long.class);
+                "SELECT COUNT(f) FROM PessoaFisica f", Long.class);
         Long resultado = query.getSingleResult();
         assertEquals(new Long(4), resultado);
     }
