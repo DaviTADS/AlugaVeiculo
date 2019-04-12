@@ -33,7 +33,7 @@ public class Veiculo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     
-    //@NotBlank
+    
     @Size(max = 50)
     @ElementCollection
     @CollectionTable(name = "TB_Placa",
@@ -41,10 +41,12 @@ public class Veiculo implements Serializable {
     @Column(name = "TXT_PLACA", table = "TB_Placa", nullable = false)
     private Collection<String> placas;
     
+    
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
     @JoinColumn(name = "ID_Motorista", referencedColumnName = "ID_Pessoa")
     private Motorista motorista;
     
+    @Size(max=4,min=4)
     @NotBlank
     @Column(name = "DT_ANOF", nullable = true)
     protected String anofabricacao;

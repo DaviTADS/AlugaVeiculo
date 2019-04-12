@@ -28,7 +28,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @PrimaryKeyJoinColumn(name="ID_Pessoa", referencedColumnName = "ID_Pessoa")
 public class Motorista extends Pessoa implements Serializable {
     
-    //@NotBlank
+    
     @Size(max = 3, min = 1)
     @ElementCollection
     @CollectionTable(name = "TB_Habilitacoes",

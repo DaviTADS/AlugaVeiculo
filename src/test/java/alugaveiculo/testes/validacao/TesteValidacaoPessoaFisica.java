@@ -90,7 +90,7 @@ public class TesteValidacaoPessoaFisica {
         pessoaf.setSenha("hue"); //senha incorreta
         pessoaf.setTelefones(telefones);
         pessoaf.setEmail("pessoafisicacom");// email incorreto 
-        pessoaf.setCpf("763330800126"); // cpf com formato inválido
+        pessoaf.setCpf("763330800126"); // cpf com um digito a mais
         pessoaf.setCreditos(""); // creditos em branco
         em.persist(pessoaf);
         em.flush();

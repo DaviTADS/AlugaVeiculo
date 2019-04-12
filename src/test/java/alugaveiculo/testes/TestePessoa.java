@@ -1,160 +1,160 @@
-
-package alugaveiculo.testes;
-
-import static alugaveiculo.testes.GenericTest.logger;
-import com.mycompany.alugaveiculo.PessoaFisica;
-import com.mycompany.alugaveiculo.PessoaJuridica;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import javax.persistence.CacheRetrieveMode;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import org.junit.Test;
-
-/**
- *
- * @author davi
- */
-public class TestePessoa extends GenericTest {
-    
-    @Test
-    public void persistirPessoaFisica() {
-        logger.info("Executando persistirPessoa()");
-        PessoaFisica pessoa = criarPessoaFisica();
-        em.persist(pessoa);
-        em.flush();
-        assertNotNull(pessoa.getId());
-        logger.info("id da pessoa inserida = "+pessoa.getId());
-        
-    }
-    
-    @Test
-    public void persistirPessoaJuridica() {
-        logger.info("Executando persistirJuridica()");
-        PessoaJuridica empresa = criarPessoaJuridica();
-        em.persist(empresa);
-        em.flush();
-        assertNotNull(empresa.getId());
-        logger.info("id da pessoa juridica inserida = "+empresa.getId());
-    }
-    
-    
-    
-    @Test
-    public void atualizarPessoaFisica(){
-        logger.info("Executando atualizarPessoaFisica()");
-        PessoaFisica pessoaFisica = em.find(PessoaFisica.class,1L);
-        pessoaFisica.setEmail("emailzao@hotmail.com");
-        pessoaFisica.setCreditos("420");
-        em.flush();
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        PessoaFisica pessoaBuscada = em.find(PessoaFisica.class,1L,properties);
-        assertEquals("emailzao@hotmail.com", pessoaBuscada.getEmail());
-        assertEquals("420",pessoaBuscada.getCreditos());
-        
-    }
-    
-    @Test
-    public void atualizarPessoaFisicaMerge(){
-        logger.info("Executando atualizarPessoaFisicaMerge()");
-        PessoaFisica pessoaFisica = em.find(PessoaFisica.class,2L);
-        pessoaFisica.setNome("Marcio");
-        em.clear();
-        em.merge(pessoaFisica);
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        PessoaFisica pessoaBuscada = em.find(PessoaFisica.class, 2L,properties);
-        assertEquals("Marcio", pessoaBuscada.getNome());
-    }
-    
-    @Test
-    public void atualizarPessoaJuridica(){
-        logger.info("Executando atualizarPessoaJuridica()");
-        PessoaJuridica pessoaJuridica = em.find(PessoaJuridica.class,5L);
-        pessoaJuridica.setEmail("oralbdobrasil@gmail.com");
-        pessoaJuridica.setCreditos("520");
-        em.flush();
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class,5L,properties);
-        assertEquals("oralbdobrasil@gmail.com", pessoaJBuscada.getEmail());
-        assertEquals("520",pessoaJBuscada.getCreditos());
-        
-    }
-    
-    @Test
-    public void atualizarPessoaJuridicaMerge(){
-        logger.info("Executando atualizarPessoaJuridicaMerge()");
-        PessoaJuridica pessoaJuridica = em.find(PessoaJuridica.class,11L);
-        pessoaJuridica.setRazaosocial("Coca Cola Industrias Brasileiras Ltda");
-        em.clear();
-        em.merge(pessoaJuridica);
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
-        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class, 11L,properties);
-        assertEquals("Coca Cola Industrias Brasileiras Ltda", pessoaJBuscada.getRazaosocial());
-    
-    }
-    
-    @Test
-    public void deletarPessoaFisica(){
-       logger.info("Executando deletarPessoaFisica()");
-       PessoaFisica pessoaFisica = em.find(PessoaFisica.class, 4L);
-       em.remove(pessoaFisica);
-       PessoaFisica pessoabuscada = em.find(PessoaFisica.class, 4L);
-       assertNull(pessoabuscada);
-    }
-    
-    @Test
-    public void deletarPessoaJuridica(){
-        logger.info("Executando deletarPessoaJuridica()");
-        PessoaJuridica pessoaJuridica = em.find(PessoaJuridica.class, 6L);
-        em.remove(pessoaJuridica);
-        PessoaJuridica pessoajbuscada = em.find(PessoaJuridica.class, 6L);
-        assertNull(pessoajbuscada);
-        
-    }
- 
-    
-    private PessoaFisica criarPessoaFisica(){
-        PessoaFisica pessoaf = new PessoaFisica();
-        String telefone = "99998888";
-        Collection<String> telefones = new ArrayList();
-        telefones.add(telefone);
-        pessoaf.setNome("Julio");
-        pessoaf.setSobrenome("Silva");
-        pessoaf.setSenha("afgt5,Ty");
-        pessoaf.setTelefones(telefones);
-        pessoaf.setEmail("pessoafisica@gmail.com");
-        pessoaf.setCpf("763.330.800-12");
-        pessoaf.setCreditos("500");
-        
-       
-        
-        return pessoaf;
-    }
-    
-    private PessoaJuridica criarPessoaJuridica(){
-        PessoaJuridica pessoaj = new PessoaJuridica();
-        String telefone1 = "999988886";
-        String telefone2 = "985663214";
-        Collection<String> telefones = new ArrayList();
-        telefones.add(telefone1);
-        telefones.add(telefone2);
-        pessoaj.setNome("Cocacola");
-        pessoaj.setRazaosocial("Coca Cola Industrias Ltda");
-        pessoaj.setSenha("Armiol.8");
-        pessoaj.setTelefones(telefones);
-        pessoaj.setEmail("cocacola@gmail.com");
-        pessoaj.setCnpj("44.951.776/0001-62");
-        pessoaj.setCreditos("456");
-        
-        
-        return pessoaj;
-    }
-      
-}
+//
+//package alugaveiculo.testes;
+//
+//import static alugaveiculo.testes.GenericTest.logger;
+//import com.mycompany.alugaveiculo.PessoaFisica;
+//import com.mycompany.alugaveiculo.PessoaJuridica;
+//import java.util.ArrayList;
+//import java.util.Collection;
+//import java.util.HashMap;
+//import java.util.Map;
+//import javax.persistence.CacheRetrieveMode;
+//import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertNotNull;
+//import static org.junit.Assert.assertNull;
+//import org.junit.Test;
+//
+///**
+// *
+// * @author davi
+// */
+//public class TestePessoa extends GenericTest {
+//    
+//    @Test
+//    public void persistirPessoaFisica() {
+//        logger.info("Executando persistirPessoa()");
+//        PessoaFisica pessoa = criarPessoaFisica();
+//        em.persist(pessoa);
+//        em.flush();
+//        assertNotNull(pessoa.getId());
+//        logger.info("id da pessoa inserida = "+pessoa.getId());
+//        
+//    }
+//    
+//    @Test
+//    public void persistirPessoaJuridica() {
+//        logger.info("Executando persistirJuridica()");
+//        PessoaJuridica empresa = criarPessoaJuridica();
+//        em.persist(empresa);
+//        em.flush();
+//        assertNotNull(empresa.getId());
+//        logger.info("id da pessoa juridica inserida = "+empresa.getId());
+//    }
+//    
+//    
+//    
+//    @Test
+//    public void atualizarPessoaFisica(){
+//        logger.info("Executando atualizarPessoaFisica()");
+//        PessoaFisica pessoaFisica = em.find(PessoaFisica.class,1L);
+//        pessoaFisica.setEmail("emailzao@hotmail.com");
+//        pessoaFisica.setCreditos("420");
+//        em.flush();
+//        Map<String, Object> properties = new HashMap<>();
+//        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+//        PessoaFisica pessoaBuscada = em.find(PessoaFisica.class,1L,properties);
+//        assertEquals("emailzao@hotmail.com", pessoaBuscada.getEmail());
+//        assertEquals("420",pessoaBuscada.getCreditos());
+//        
+//    }
+//    
+//    @Test
+//    public void atualizarPessoaFisicaMerge(){
+//        logger.info("Executando atualizarPessoaFisicaMerge()");
+//        PessoaFisica pessoaFisica = em.find(PessoaFisica.class,2L);
+//        pessoaFisica.setNome("Marcio");
+//        em.clear();
+//        em.merge(pessoaFisica);
+//        Map<String, Object> properties = new HashMap<>();
+//        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+//        PessoaFisica pessoaBuscada = em.find(PessoaFisica.class, 2L,properties);
+//        assertEquals("Marcio", pessoaBuscada.getNome());
+//    }
+//    
+//    @Test
+//    public void atualizarPessoaJuridica(){
+//        logger.info("Executando atualizarPessoaJuridica()");
+//        PessoaJuridica pessoaJuridica = em.find(PessoaJuridica.class,5L);
+//        pessoaJuridica.setEmail("oralbdobrasil@gmail.com");
+//        pessoaJuridica.setCreditos("520");
+//        em.flush();
+//        Map<String, Object> properties = new HashMap<>();
+//        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+//        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class,5L,properties);
+//        assertEquals("oralbdobrasil@gmail.com", pessoaJBuscada.getEmail());
+//        assertEquals("520",pessoaJBuscada.getCreditos());
+//        
+//    }
+//    
+//    @Test
+//    public void atualizarPessoaJuridicaMerge(){
+//        logger.info("Executando atualizarPessoaJuridicaMerge()");
+//        PessoaJuridica pessoaJuridica = em.find(PessoaJuridica.class,11L);
+//        pessoaJuridica.setRazaosocial("Coca Cola Industrias Brasileiras Ltda");
+//        em.clear();
+//        em.merge(pessoaJuridica);
+//        Map<String, Object> properties = new HashMap<>();
+//        properties.put("javax.persistence.cache.retrieveMode", CacheRetrieveMode.BYPASS);
+//        PessoaJuridica pessoaJBuscada = em.find(PessoaJuridica.class, 11L,properties);
+//        assertEquals("Coca Cola Industrias Brasileiras Ltda", pessoaJBuscada.getRazaosocial());
+//    
+//    }
+//    
+//    @Test
+//    public void deletarPessoaFisica(){
+//       logger.info("Executando deletarPessoaFisica()");
+//       PessoaFisica pessoaFisica = em.find(PessoaFisica.class, 4L);
+//       em.remove(pessoaFisica);
+//       PessoaFisica pessoabuscada = em.find(PessoaFisica.class, 4L);
+//       assertNull(pessoabuscada);
+//    }
+//    
+//    @Test
+//    public void deletarPessoaJuridica(){
+//        logger.info("Executando deletarPessoaJuridica()");
+//        PessoaJuridica pessoaJuridica = em.find(PessoaJuridica.class, 6L);
+//        em.remove(pessoaJuridica);
+//        PessoaJuridica pessoajbuscada = em.find(PessoaJuridica.class, 6L);
+//        assertNull(pessoajbuscada);
+//        
+//    }
+// 
+//    
+//    private PessoaFisica criarPessoaFisica(){
+//        PessoaFisica pessoaf = new PessoaFisica();
+//        String telefone = "99998888";
+//        Collection<String> telefones = new ArrayList();
+//        telefones.add(telefone);
+//        pessoaf.setNome("Julio");
+//        pessoaf.setSobrenome("Silva");
+//        pessoaf.setSenha("afgt5,Ty");
+//        pessoaf.setTelefones(telefones);
+//        pessoaf.setEmail("pessoafisica@gmail.com");
+//        pessoaf.setCpf("763.330.800-12");
+//        pessoaf.setCreditos("500");
+//        
+//       
+//        
+//        return pessoaf;
+//    }
+//    
+//    private PessoaJuridica criarPessoaJuridica(){
+//        PessoaJuridica pessoaj = new PessoaJuridica();
+//        String telefone1 = "999988886";
+//        String telefone2 = "985663214";
+//        Collection<String> telefones = new ArrayList();
+//        telefones.add(telefone1);
+//        telefones.add(telefone2);
+//        pessoaj.setNome("Cocacola");
+//        pessoaj.setRazaosocial("Coca Cola Industrias Ltda");
+//        pessoaj.setSenha("Armiol.8");
+//        pessoaj.setTelefones(telefones);
+//        pessoaj.setEmail("cocacola@gmail.com");
+//        pessoaj.setCnpj("44.951.776/0001-62");
+//        pessoaj.setCreditos("456");
+//        
+//        
+//        return pessoaj;
+//    }
+//      
+//}
